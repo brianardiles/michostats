@@ -212,7 +212,7 @@ data-v0-t="card"
         document.getElementById('losses').innerText = losses.length
         document.getElementById('winRate').innerText = winRate.toFixed(2) + '%'
 
-        generateTable(matches.reverse())
+        generateTable(matches)
 
         updateChartDonut()
         updateChartLine()
@@ -236,8 +236,10 @@ data-v0-t="card"
         }
       }
 
-      const generateTable = (matchs) => {
-        matches.forEach(item => {
+      const generateTable = (results) => {
+        matchsCopy = [...results]
+        matchsCopy.reverse()
+        matchsCopy.forEach(item => {
             let colortext = null
             switch (item.riverResult) {
                 case "win":
