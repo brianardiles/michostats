@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micho Stats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container mx-auto p-6">
+    <h1 class="text-2xl font-semibold text-center mt-6 mb-6">Micho Stats</h1>
+    <h2 class="text-lg text-center mt-6 mb-6">
+        Una recopilacion de todos los partidos de Martín Demichelis
+        desde que asumio como director tecnico de River Plate (28/01/2023) hasta la fecha
+    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Partidos Totales</h3>
+    </div>
+    <div class="p-6 flex items-center justify-between">
+      <div class="text-4xl font-bold" id="total">0</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-10 w-10 text-primary"
+      >
+        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+        <path d="M4 22h16"></path>
+        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Partidos Ganados</h3>
+    </div>
+    <div class="p-6 flex items-center justify-between">
+      <div class="text-4xl font-bold" id="wins">0</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-10 w-10 text-green-500"
+      >
+        <path d="M20 6 9 17l-5-5"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Partidos Empatados</h3>
+    </div>
+    <div class="p-6 flex items-center justify-between">
+      <div class="text-4xl font-bold" id="draws">0</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-10 w-10 text-yellow-500"
+      >
+        <path d="M5 12h14"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Partidos Perdidos</h3>
+    </div>
+    <div class="p-6 flex items-center justify-between">
+      <div class="text-4xl font-bold" id="losses">0</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-10 w-10 text-red-500"
+      >
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </div>
+  </div>
+  <div
+    class="rounded-lg border bg-card text-card-foreground shadow-sm col-span-1 md:col-span-2 lg:col-span-1"
+    data-v0-t="card"
+  >
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Porcentaje de partidos ganados</h3>
+    </div>
+    <div class="p-6 flex flex-col items-center justify-center">
+      <div class="text-4xl font-bold" id="winRate">0.0%</div>
+    </div>
+  </div>
+
+  <div
+    class="rounded-lg border bg-card text-card-foreground shadow-sm col-span-1 md:col-span-2 lg:col-span-1"
+    data-v0-t="card"
+  >
+    <div class="flex flex-col space-y-1.5 p-6">
+    </div>
+    <div class="p-6 flex flex-col items-center justify-center">
+      <div class="text-md" id="winRate">Made with ❤️ by <a href="https://twitter.com/brai4u" target="_blank">@brai4u</a></div>
+    </div>
+  </div>
+
+  <div
+    class="rounded-lg border bg-card text-card-foreground shadow-sm col-span-1 md:col-span-2 lg:col-span-2"
+    data-v0-t="card"
+  >
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Tendencia</h3>
+    </div>
+    <div class="p-6">
+        <canvas id="line-chart"></canvas>
+    </div>
+  </div>
+
+  <div
+  class="rounded-lg border bg-card text-card-foreground shadow-sm col-span-1 md:col-span-1 lg:col-span-1"
+  data-v0-t="card"
+>
+  <div class="flex flex-col space-y-1.5 p-6">
+    <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Distribucion de partidos</h3>
+  </div>
+  <div class="p-6">
+    <canvas id="donut-chart"></canvas>
+  </div>
+</div>
+
+<div
+class="rounded-lg border bg-card text-card-foreground shadow-sm col-span-1 md:col-span-3 lg:col-span-3"
+data-v0-t="card"
+>
+<div class="flex flex-col space-y-1.5 p-6">
+  <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Ultimos partidos</h3>
+</div>
+<div class="p-6">
+    <table class="table-fixed w-full text-center">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Partido</th>
+            <th>Resultado</th>
+            <th>Torneo</th>
+          </tr>
+        </thead>
+        <tbody id="result-table">
+        </tbody>
+      </table>
+</div>
+</div>
+  
+</div>
+</div>
+
+</body>
+
+<script>
+    const wins = []
+    const draws = []
+    const losses = []
+    const matches = []
+    // Fetch data from the API
+    fetch('https://txssifbuxkcqnyvywmxx.supabase.co/rest/v1/matchs?select=*',
+    {
+      headers: {
+        'apikey': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4c3NpZmJ1eGtjcW55dnl3bXh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU4ODY5MzcsImV4cCI6MjAzMTQ2MjkzN30.cY9Wu2_qy7l6EwNdCgqDMJUPf04N7-qsC_qI-zErg4A"
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+
+        data.forEach(item => {
+            matches.push(item)
+            processMatch(item)
+        });
+
+        const winRate = (wins.length/matches.length) * 100
+        document.getElementById('total').innerText = matches.length
+        document.getElementById('wins').innerText = wins.length
+        document.getElementById('draws').innerText = draws.length
+        document.getElementById('losses').innerText = losses.length
+        document.getElementById('winRate').innerText = winRate.toFixed(2) + '%'
+
+        generateTable(matches.reverse())
+
+        updateChartDonut()
+        updateChartLine()
+      })
+      .catch(error => console.error('Error fetching data:', error));
+
+
+      const processMatch = (item) => {
+        switch (item.riverResult) {
+            case "win":
+                wins.push(item)
+                break;
+            case "draw":
+                draws.push(item)
+                break;
+            case "loss":
+                losses.push(item)
+                break;
+            default:
+                break;
+        }
+      }
+
+      const generateTable = (matchs) => {
+        matches.forEach(item => {
+            let colortext = null
+            switch (item.riverResult) {
+                case "win":
+                    colortext = "text-green-600"
+                    break;
+                case "draw":
+                    colortext = "text-yellow-600"
+                    break;
+                case "loss":
+                    colortext = "text-red-600"
+                    break;
+                default:
+                    break;
+            }
+
+        document.getElementById("result-table").innerHTML += `
+        <tr class="${colortext}">
+            <td>${item.date}</td>
+            <td>${item.homeTeam} vs ${item.awayTeam}</td>
+            <td>${item.homeScore} - ${item.awayScore} ${item.awayPenalty ? `(${item.homePenalty} - ${item.awayPenalty})` : "" }</td>
+            <td>${item.tournament}</td>
+          </tr>
+        ` 
+        });
+      }
+  </script>
+
+<script>
+    const updateChartDonut = () => {
+        // Get the canvas element
+        var canvas = document.getElementById('donut-chart');
+
+        // Set the chart data
+        var data = {
+            labels: ['Perdidos', 'Empatados', 'Ganados'],
+            datasets: [{
+                label: 'Micho Stats',
+                data: [losses.length, draws.length, wins.length],
+                backgroundColor: [
+                    '#EF4444',
+                    '#FBBF24',
+                    '#10B981',
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        // Set the chart options
+        var options = {
+            plugins: {
+                legend: {
+                    display: true
+                }
+            },
+            aspectRatio: 1,
+            cutout: '50%',
+            animation: {
+                animateRotate: true
+            }
+        };
+
+        // Create the chart
+        var chart = new Chart(canvas, {
+            type: 'doughnut',
+            data: data,
+            options: options
+        });
+    }
+</script>
+
+
+<script>
+    const updateChartLine = () => {
+        // Get the canvas element
+        var canvas = document.getElementById('line-chart');
+        const labels = matches.map((e) => {
+            return e.date
+        })
+        let trace = 0
+        const results = matches.map((e) => {
+            switch (e.riverResult) {
+            case "win":
+                trace++
+                break
+            case "loss":
+                trace--
+                break
+            default:
+                break;
+            }
+
+            return trace
+        }, 0)
+
+        console.log(results)
+        // Set the chart data
+        var data = {
+            labels: labels,
+            datasets: [{
+                label: 'partidos netos',
+                data: results,
+                backgroundColor: [
+                    '#5564eb',
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        // Set the chart options
+        var options = {
+            plugins: {
+                legend: {
+                    display: true
+                }
+            },
+        };
+
+        // Create the chart
+        var chart = new Chart(canvas, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    }
+</script>
+
+</html>
