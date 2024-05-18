@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="container mx-auto p-6">
+<div class="container mx-auto p-1">
     <h1 class="text-2xl font-semibold text-center mt-6 mb-6">Micho Stats</h1>
     <h2 class="text-lg text-center mt-6 mb-6">
         Una recopilacion de todos los partidos de Martín Demichelis
@@ -115,7 +115,7 @@
     data-v0-t="card"
   >
     <div class="flex flex-col space-y-1.5 p-6">
-      <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Porcentaje de partidos ganados</h3>
+      <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">% de partidos ganados</h3>
     </div>
     <div class="p-6 flex flex-col items-center justify-center">
       <div class="text-4xl font-bold" id="winRate">0.0%</div>
@@ -168,7 +168,6 @@ data-v0-t="card"
     <table class="table-fixed w-full text-center">
         <thead>
           <tr>
-            <th>Fecha</th>
             <th>Partido</th>
             <th>Resultado</th>
             <th>Torneo</th>
@@ -259,7 +258,6 @@ data-v0-t="card"
 
         document.getElementById("result-table").innerHTML += `
         <tr class="${colortext}">
-            <td>${item.date}</td>
             <td>${item.homeTeam} vs ${item.awayTeam}</td>
             <td>${item.homeScore} - ${item.awayScore} ${item.awayPenalty ? `(${item.homePenalty} - ${item.awayPenalty})` : "" }</td>
             <td>${item.tournament}</td>
@@ -357,6 +355,7 @@ data-v0-t="card"
                     display: true
                 }
             },
+            aspectRatio: 1
         };
 
         // Create the chart
