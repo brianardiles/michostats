@@ -275,14 +275,14 @@ data-v0-t="card"
 
         // Set the chart data
         var data = {
-            labels: ['Perdidos', 'Empatados', 'Ganados'],
+            labels: ['Ganados', 'Empatados', 'Perdidos'],
             datasets: [{
                 label: 'Micho Stats',
-                data: [losses.length, draws.length, wins.length],
+                data: [wins.length, draws.length, losses.length],
                 backgroundColor: [
-                    '#EF4444',
-                    '#FBBF24',
                     '#10B981',
+                    '#FBBF24',
+                    '#EF4444',
                 ],
                 hoverOffset: 4
             }]
@@ -313,40 +313,40 @@ data-v0-t="card"
 
 
 <script>
+    const comulativeResults = (results) => {
+      let comulative = 0
+      const comulativeResults = results.map((e) => {
+        if (e == "win") {
+          return comulative++
+        } else if (e == "loss") {
+          return comulative--
+        }
+
+        return comulative
+      })
+
+      return comulativeResults
+    }
+
     const updateChartLine = () => {
         // Get the canvas element
         var canvas = document.getElementById('line-chart');
         const labels = matches.map((e) => {
             return e.date
         })
-        let trace = 0
-        const results = matches.map((e) => {
-            switch (e.riverResult) {
-            case "win":
-                trace++
-                break
-            case "loss":
-                trace--
-                break
-            default:
-                break;
-            }
 
-            return trace
-        }, 0)
-
-        console.log(results)
-        // Set the chart data
-        var data = {
-            labels: labels,
-            datasets: [{
-                label: 'partidos netos',
-                data: results,
+        let datasets = [{
+                label: 'resultados acumulativos',
+                data: comulativeResults(matches.map(e => {return e.riverResult})),
                 backgroundColor: [
                     '#5564eb',
                 ],
                 hoverOffset: 4
             }]
+        // Set the chart data
+        var data = {
+            labels,
+            datasets
         };
 
         // Set the chart options
