@@ -317,9 +317,9 @@ data-v0-t="card"
       let comulative = 0
       const comulativeResults = results.map((e) => {
         if (e == "win") {
-          return comulative++
+          return comulative+=1
         } else if (e == "loss") {
-          return comulative--
+          return comulative-=1
         }
 
         return comulative
